@@ -22,6 +22,6 @@ module.exports = (sequelize, DataTypes) => {
         }
     );
     const Type_food = sequelize.import('./type_food.js');
-    Employee.belongsTo(Type_food, {foreignKey: 'type_food_id'});
+    food.belongsTo(Type_food, {foreignKey: 'type_food_id'});
     return food;
 };

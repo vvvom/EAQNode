@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         }
     );
     const Type_drink = sequelize.import('./type_drink.js');
-    Employee.belongsTo(Type_drink, {foreignKey: 'type_drink_id'});
+    drink.belongsTo(Type_drink, {foreignKey: 'type_drink_id'});
 
     return drink;
 };

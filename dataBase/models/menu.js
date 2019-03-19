@@ -25,16 +25,16 @@ module.exports = (sequelize, DataTypes) => {
         }
     );
     const Cafe = sequelize.import('./cafe.js');
-    Employee.belongsTo(Cafe, {foreignKey: 'cafe_id'});
+    menu.belongsTo(Cafe, {foreignKey: 'cafe_id'});
 
     const Food_id = sequelize.import('./food.js');
-    Employee.belongsTo(Food_id, {foreignKey: 'food_id'});
+    menu.belongsTo(Food_id, {foreignKey: 'food_id'});
 
     const Drink_id = sequelize.import('./drink.js');
-    Employee.belongsTo(Drink_id, {foreignKey: 'drink_id'});
+    menu.belongsTo(Drink_id, {foreignKey: 'drink_id'});
 
     const Order_id = sequelize.import('./order.js');
-    Employee.belongsTo(Order_id, {foreignKey: 'order_id'});
+    menu.belongsTo(Order_id, {foreignKey: 'order_id'});
 
     return menu;
 };
