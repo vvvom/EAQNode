@@ -1,5 +1,5 @@
 module.export = (sequelize, DataTypes)=> {
-    const drink= sequelize.define('drink',{
+    const Drink= sequelize.define('Drink',{
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
@@ -9,23 +9,38 @@ module.export = (sequelize, DataTypes)=> {
             type: DataTypes.STRING
         },
 
-        password: {
-            type: DataTypes.STRING
-        },
         ingredients: {
             type: DataTypes.STRING
         },
         type_drink_id: {
             type: DataTypes.INTEGER
+        },
+        price: {
+            type:DataTypes.FLOAT
+        },
+        volume: {
+            type:DataTypes.INTEGER
+        },
+        menu_id: {
+            type: DataTypes.INTEGER
+        },
+        degrees: {
+            type: DataTypes.FLOAT
+        },
+        about: {
+            type: DataTypes.STRING
         }
     }, {
         tableName: 'drink',
         timestamps:false
 
     });
+   const Menu = sequelize.import('./Menu.js');
+   Drink.belongsTo(Menu, {foreignKey: 'menu_id'});
+   const TypeDrink = sequelize.import('./TypeDrink.js');
+   Drink.belongsTo(TypeDrink, {foreignKey:'type_drink_id'});
 
-   const typeDrink = sequelize.import('./Type_drink.js');
-   drink.belongsTo(typeDrink, {foreignKey:'type_drink_id'});
 
-    return drink;
+
+    return Drink;
 }

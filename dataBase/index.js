@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const fs = require('fs');
 const resolve = require('path').resolve;
-const DbName = 'new_cafe_projec';
+const DbName = 'EandQ';
 const DbUser = 'root';
 const DbPass = 'vasylyna';
 

@@ -1,14 +1,10 @@
 module.export = (sequelize, DataTypes)=> {
-    const order = sequelize.define('order',{
+    const Order = sequelize.define('Order',{
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true
         },
-        massage: {
-            type: DataTypes.STRING
-        },
-
         sum: {
             type: DataTypes.FLOAT
         },
@@ -17,13 +13,21 @@ module.export = (sequelize, DataTypes)=> {
         },
         type_of_pay_id:{
             type: DataTypes.INTEGER
+        },
+        cafe_id :{
+            type:DataTypes.INTEGER
+        },
+        table_number :{
+            type:DataTypes.INTEGER
         }
     }, {
         tableName: 'order',
         timestamps:false
 
     });
-    const paymentsType = sequelize.import('./Payments_type.js');
-    order.belongsTo(paymentsType, {foreignKey: 'type_of_pay_id'});
-    return order;
-}
+    const Cafe = sequelize.import('./Cafe.js');
+    Order.belongsTo(Cafe, {foreignKey: 'cafe_id'});
+    const PaymentsType = sequelize.import('./PaymentsType.js');
+    Order.belongsTo(PaymentsType, {foreignKey: 'type_of_pay_id'});
+    return Order;
+};

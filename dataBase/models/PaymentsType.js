@@ -1,5 +1,5 @@
 module.export = (sequelize, DataTypes)=> {
-    const payments_type = sequelize.define('payments_type',{
+    const PaymentsType = sequelize.define('Payments_type',{
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
@@ -14,5 +14,5 @@ module.export = (sequelize, DataTypes)=> {
         timestamps:false
 
     });
-    return payments_type;
+    return PaymentsType;
 }

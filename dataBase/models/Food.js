@@ -1,5 +1,5 @@
 module.export = (sequelize, DataTypes)=> {
-    const food = sequelize.define('food',{
+    const Food = sequelize.define('Food',{
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
@@ -14,13 +14,27 @@ module.export = (sequelize, DataTypes)=> {
         },
         type_food_id: {
             type: DataTypes.INTEGER
+        },
+        menu_id: {
+            type: DataTypes.INTEGER
+        },
+        price: {
+            type: DataTypes.FLOAT
+        },
+        weight: {
+            type: DataTypes.INTEGER
+        },
+        about: {
+            type: DataTypes.STRING
         }
     }, {
         tableName: 'food',
         timestamps:false
 
     });
-    const typeFood = sequelize.import('./Type_food.js');
-    food.belongsTo(typeFood, {foreignKey: 'type_food_id'});
-    return food;
-}
+    const Menu = sequelize.import('./Menu.js');
+    Food.belongsTo(Menu, {foreignKey: 'menu_id'});
+    const TypeFood = sequelize.import('./TypeFood.js');
+    Food.belongsTo(TypeFood, {foreignKey: 'type_food_id'});
+    return Food;
+};

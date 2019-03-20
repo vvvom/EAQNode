@@ -1,5 +1,5 @@
 module.export = (sequelize, DataTypes)=> {
-    const cafe = sequelize.define('cafe',{
+    const Cafe = sequelize.define('Cafe',{
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
@@ -17,5 +17,5 @@ module.export = (sequelize, DataTypes)=> {
         timestamps:false
 
     });
-    return cafe
-}
+    return Cafe;
+};
