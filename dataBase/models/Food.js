@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-    const cafe = sequelize.define('cafe', {
+    const Food = sequelize.define('Food', {
             id: {
                 type: DataTypes.INTEGER,
                 primaryKey: true,
@@ -9,14 +9,19 @@ module.exports = (sequelize, DataTypes) => {
             name: {
                 type: DataTypes.STRING
             },
-            password: {
+            ingredients: {
                 type: DataTypes.STRING
-            }
+            },
+            type_food_id: {
+                type: DataTypes.INTEGER
+            },
         },
         {
-            tableName: 'cafe',
+            tableName: 'food',
             timestamps: false
         }
     );
-    return cafe;
+    const Type_food = sequelize.import('./Type_food.js');
+    Food.belongsTo(Type_food, {foreignKey: 'type_food_id'});
+    return Food;
 };

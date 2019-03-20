@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-    const order = sequelize.define('order', {
+    const Order = sequelize.define('Order', {
             id: {
                 type: DataTypes.INTEGER,
                 primaryKey: true,
@@ -25,8 +25,8 @@ module.exports = (sequelize, DataTypes) => {
         }
     );
 
-    const Type_payments = sequelize.import('./payments_type.js');
-    order.belongsTo(Type_payments, {foreignKey: 'type_of_pay_id'});
+    const Type_payments = sequelize.import('./Payments_type.js');
+    Order.belongsTo(Type_payments, {foreignKey: 'type_of_pay_id'});
 
-    return order;
+    return Order;
 };

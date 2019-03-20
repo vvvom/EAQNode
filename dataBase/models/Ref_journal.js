@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-    const ref_journal = sequelize.define('ref_journal', {
+    const Ref_journal = sequelize.define('Ref_journal', {
             id: {
                 type: DataTypes.INTEGER,
                 primaryKey: true,
@@ -22,14 +22,14 @@ module.exports = (sequelize, DataTypes) => {
             timestamps: false
         }
     );
-    const Food = sequelize.import('./food.js');
-    ref_journal.belongsTo(Food, {foreignKey: 'food_id'});
+    const Food = sequelize.import('./Food.js');
+    Ref_journal.belongsTo(Food, {foreignKey: 'food_id'});
 
-    const Drink = sequelize.import('./drink.js');
-    ref_journal.belongsTo(Drink, {foreignKey: 'drink_id'});
+    const Drink = sequelize.import('./Drink.js');
+    Ref_journal.belongsTo(Drink, {foreignKey: 'drink_id'});
 
-    const Order = sequelize.import('./order.js');
-    ref_journal.belongsTo(Order, {foreignKey: 'order_id'});
+    const Order = sequelize.import('./Order.js');
+    Ref_journal.belongsTo(Order, {foreignKey: 'order_id'});
 
-    return ref_journal;
+    return Ref_journal;
 };

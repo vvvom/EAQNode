@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-    const payments_type = sequelize.define('payments_type', {
+    const Payments_type = sequelize.define('Payments_type', {
             id: {
                 type: DataTypes.INTEGER,
                 primaryKey: true,
@@ -15,5 +15,5 @@ module.exports = (sequelize, DataTypes) => {
             timestamps: false
         }
     );
-    return payments_type;
+    return Payments_type;
 };
