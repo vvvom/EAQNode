@@ -2,7 +2,7 @@ const dataBase = require('../../dataBase').getInstance();
 
 module.exports = async (req, res) => {
     try {
-        const Cafe = dataBase.getModel('cafe')
+        const Cafe = dataBase.getModel('Cafe')
         const gotCafe = await Cafe.findAll({
             attributes: [
                 'id',
