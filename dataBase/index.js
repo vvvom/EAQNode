@@ -6,7 +6,7 @@ module.exports = (() => {
     let instance;
 
     function initConnection() {
-        let client = new Sequelize('cafe', 'root', '', {
+        let client = new Sequelize('cafe', 'root', 'root', {
             host: 'localhost',
             dialect: 'mysql',
             operatorsAliases: false,

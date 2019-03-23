@@ -1,17 +1,16 @@
 module.exports = (sequelize, type)=>{
-    return sequelize.define('TypeDrinks',{
+    return sequelize.define('TypeDrink',{
         id:{
             type: type.INTEGER,
             primaryKey: true,
-            autoIncrement: true,
-            allowNull: false
+            autoIncrement: true
         },
         type:{
             type: type.STRING,
             allowNull: false
         }
     },{
-        tableName:'type_drinks',
+        tableName:'type_drink',
         timestamps: false
     });
 };

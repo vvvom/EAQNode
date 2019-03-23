@@ -1,5 +1,5 @@
 module.exports = (sequelize, type)=>{
-    const Food =  sequelize.define('Food',{
+    const Drink = sequelize.define('Drink',{
         id:{
             type: type.INTEGER,
             primaryKey: true,
@@ -9,15 +9,11 @@ module.exports = (sequelize, type)=>{
             type: type.STRING,
             allowNull: false
         },
-        img:{
-            type: type.STRING,
-            allowNull: false
-        },
         ingredients:{
             type: type.STRING,
             allowNull: true
         },
-        typeFoodId:{
+        typeDrinkId:{
             type: type.INTEGER,
             allowNull: true
         },
@@ -25,12 +21,16 @@ module.exports = (sequelize, type)=>{
             type: type.INTEGER,
             allowNull: true
         },
-        weight:{
+        scope:{
             type: type.INTEGER,
             allowNull: true
         },
+        degrees:{
+            type: type.FLOAT,
+            allowNull: true
+        },
         price:{
-            type: type.INTEGER,
+            type: type.FLOAT,
             allowNull: true
         },
         about:{
@@ -38,12 +38,12 @@ module.exports = (sequelize, type)=>{
             allowNull: true
         }
     },{
-        tableName:'food',
+        tableName:'drink',
         timestamps: false
     });
-    const typeFoodId = sequelize.import('./Food.js');
-    Food.belongsTo(typeFoodId,{foreignKey: 'typeFoodId'});
+    const typeDrinkId = sequelize.import('./TypeDrink.js');
+    Drink.belongsTo(typeDrinkId,{foreignKey: 'typeDrinkId'});
     const menuId = sequelize.import('./Menu.js');
-    Food.belongsTo(menuId,{foreignKey: 'menuId'});
-    return Food;
+    Drink.belongsTo(menuId,{foreignKey: 'menuId'});
+    return Drink;
 };

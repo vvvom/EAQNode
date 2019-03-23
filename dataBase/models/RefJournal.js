@@ -3,30 +3,29 @@ module.exports = (sequelize, type)=>{
         id:{
             type: type.INTEGER,
             primaryKey: true,
-            autoIncrement: true,
-            allowNull: false
+            autoIncrement: true
         },
         drinkId:{
             type: type.INTEGER,
-            allowNull: false
+            allowNull: true
         },
         foodId:{
             type: type.INTEGER,
-            allowNull: false
+            allowNull: true
         },
         orderId:{
             type: type.INTEGER,
-            allowNull: false
+            allowNull: true
         }
     },{
         tableName:'ref_journal',
         timestamps: false
     });
-    const drinkId = sequelize.import('./Drinks.js');
+    const drinkId = sequelize.import('./Drink.js');
     Journal.belongsTo(drinkId,{foreignKey: 'drinkId'});
     const foodId = sequelize.import('./Food.js');
     Journal.belongsTo(foodId,{foreignKey: 'foodId'});
-    const orderId = sequelize.import('./Orders.js');
+    const orderId = sequelize.import('./Order.js');
     Journal.belongsTo(orderId,{foreignKey: 'orderId'});
     return Journal;
 };
