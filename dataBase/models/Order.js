@@ -9,19 +9,19 @@ module.exports = (sequelize, type)=>{
             type: type.FLOAT,
             allowNull: true
         },
-        time:{
-            type: type.DATETIME,
+        created_at:{
+            type: type.DATE,
             allowNull: false
         },
-        typeOfPayId:{
+        type_of_pay_id:{
             type: type.INTEGER,
             allowNull: true
         },
-        cafeId:{
+        cafe_id:{
             type: type.INTEGER,
             allowNull: true
         },
-        tableNumberId:{
+        table_number_id:{
             type: type.INTEGER,
             allowNull: true
         }
@@ -30,8 +30,8 @@ module.exports = (sequelize, type)=>{
         timestamps: false
     });
     const typeOfPayId = sequelize.import('./TypeOfPay.js');
-    Order.belongsTo(typeOfPayId,{foreignKey: 'typeOfPayId'});
+    Order.belongsTo(typeOfPayId,{foreignKey: 'type_of_pay_id'});
     const cafeId = sequelize.import('./Cafe.js');
-    Order.belongsTo(cafeId,{foreignKey: 'cafeId'});
+    Order.belongsTo(cafeId,{foreignKey: 'cafe_id'});
     return Order;
 };

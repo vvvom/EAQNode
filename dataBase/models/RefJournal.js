@@ -5,15 +5,15 @@ module.exports = (sequelize, type)=>{
             primaryKey: true,
             autoIncrement: true
         },
-        drinkId:{
+        drink_id:{
             type: type.INTEGER,
             allowNull: true
         },
-        foodId:{
+        food_id:{
             type: type.INTEGER,
             allowNull: true
         },
-        orderId:{
+        order_id:{
             type: type.INTEGER,
             allowNull: true
         }
@@ -22,10 +22,10 @@ module.exports = (sequelize, type)=>{
         timestamps: false
     });
     const drinkId = sequelize.import('./Drink.js');
-    Journal.belongsTo(drinkId,{foreignKey: 'drinkId'});
+    Journal.belongsTo(drinkId,{foreignKey: 'drink_id'});
     const foodId = sequelize.import('./Food.js');
-    Journal.belongsTo(foodId,{foreignKey: 'foodId'});
+    Journal.belongsTo(foodId,{foreignKey: 'food_id'});
     const orderId = sequelize.import('./Order.js');
-    Journal.belongsTo(orderId,{foreignKey: 'orderId'});
+    Journal.belongsTo(orderId,{foreignKey: 'order_id'});
     return Journal;
 };

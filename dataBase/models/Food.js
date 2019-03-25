@@ -17,11 +17,11 @@ module.exports = (sequelize, type)=>{
             type: type.STRING,
             allowNull: true
         },
-        typeFoodId:{
+        type_food_id:{
             type: type.INTEGER,
             allowNull: true
         },
-        menuId:{
+        menu_id:{
             type: type.INTEGER,
             allowNull: true
         },
@@ -41,9 +41,9 @@ module.exports = (sequelize, type)=>{
         tableName:'food',
         timestamps: false
     });
-    const typeFoodId = sequelize.import('./Food.js');
-    Food.belongsTo(typeFoodId,{foreignKey: 'typeFoodId'});
+    const typeFoodId = sequelize.import('./TypeFood.js');
+    Food.belongsTo(typeFoodId,{foreignKey: 'type_food_id'});
     const menuId = sequelize.import('./Menu.js');
-    Food.belongsTo(menuId,{foreignKey: 'menuId'});
+    Food.belongsTo(menuId,{foreignKey: 'menu_id'});
     return Food;
 };

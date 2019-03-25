@@ -5,7 +5,7 @@ module.exports = (sequelize, type)=>{
             primaryKey: true,
             autoIncrement: true
         },
-        cafeId:{
+        cafe_id:{
             type: type.INTEGER,
             allowNull: true
         },
@@ -18,6 +18,6 @@ module.exports = (sequelize, type)=>{
         timestamps: false
     });
     const cafeId = sequelize.import('./Cafe.js');
-    Menu.belongsTo(cafeId,{foreignKey: 'cafeId'});
+    Menu.belongsTo(cafeId,{foreignKey: 'cafe_id'});
     return Menu;
 };
