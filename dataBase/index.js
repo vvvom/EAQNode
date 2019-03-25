@@ -6,7 +6,7 @@ let resolve = require('path').resolve;
     let instance;
 
     function initConnection() {
-        let client = new sequelize('cafeproject', 'root', 'donaldblym0710', {
+        let client = new sequelize('cafeproject', 'root', 'kobetiak', {
             host: 'localhost',
             dialect: 'mysql',
             operatorsAliases: false,

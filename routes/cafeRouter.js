@@ -1,16 +1,16 @@
 let router = require('express').Router();
 
-const GetAllCafes  = require('../controllers/cafe/gotAllCafe');
-const AddCafe  = require('../controllers/cafe/addCafe');
-const DeleteCafe  = require('../controllers/cafe/deleteCafe');
-const FindCafeById  = require('../controllers/cafe/findCafeById');
-const UpdateCafe  = require('../controllers/cafe/updateCafe');
+const getAllCafes  = require('../controllers/cafe/gotAllCafe');
+const addCafe  = require('../controllers/cafe/addCafe');
+const deleteCafe  = require('../controllers/cafe/deleteCafe');
+const findCafeById  = require('../controllers/cafe/findCafeById');
+const updateCafe  = require('../controllers/cafe/updateCafe');
 
 
-router.get('/', GetAllCafes);
-router.post('/', AddCafe);
-router.delete('/:id', DeleteCafe);
-router.get('/:id', FindCafeById);
-router.put('/:id', UpdateCafe);
+router.get('/', getAllCafes);
+router.post('/', addCafe);
+router.delete('/:id', deleteCafe);
+router.get('/:id', findCafeById);
+router.put('/:id', updateCafe);
 
 module.exports = router;
