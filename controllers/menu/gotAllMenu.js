@@ -2,21 +2,19 @@ let dataBase = require('../../dataBase').getInstance();
 
 module.exports = async (req, res) => {
     try {
+        const Menu = dataBase.getModel('Menu');
         const Cafe = dataBase.getModel('Cafe');
 
-        const name = req.params.name;
 
-        if (!name) throw new Error('No id');
-
-        await Cafe.destroy({
-            where: {
-                name
-            }
+        const gotMenu = await Menu.findAll({
+            include: [Cafe]
         });
+
+        if (!gotMenu) throw new Error('Menu not exist');
 
         res.json({
             success: true,
-            message: 'Cafe successfully deleted'
+            message: gotMenu
         });
     } catch (e) {
         console.log(e);
@@ -26,3 +24,4 @@ module.exports = async (req, res) => {
         });
     }
 };
+

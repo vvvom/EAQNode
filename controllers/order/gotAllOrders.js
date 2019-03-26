@@ -2,21 +2,22 @@ let dataBase = require('../../dataBase').getInstance();
 
 module.exports = async (req, res) => {
     try {
+        const Order = dataBase.getModel('Order');
+        const PaymentsType = dataBase.getModel('Payments_type');
         const Cafe = dataBase.getModel('Cafe');
 
-        const name = req.params.name;
 
-        if (!name) throw new Error('No id');
+        const gotOrder = await Order.findAll({
 
-        await Cafe.destroy({
-            where: {
-                name
-            }
+            include: [PaymentsType, Cafe]
+
         });
+
+        if (!gotOrder) throw new Error('Order not exist');
 
         res.json({
             success: true,
-            message: 'Cafe successfully deleted'
+            message: gotOrder
         });
     } catch (e) {
         console.log(e);
@@ -26,3 +27,4 @@ module.exports = async (req, res) => {
         });
     }
 };
+

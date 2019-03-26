@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.STRING
             },
             ingredients: {
-                type: DataTypes.STRING
+                type: DataTypes.TEXT
             },
             type_drink_id: {
                 type: DataTypes.INTEGER

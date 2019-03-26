@@ -1,22 +1,25 @@
 let dataBase = require('../../dataBase').getInstance();
 
 module.exports = async (req, res) => {
+
     try {
         const Cafe = dataBase.getModel('Cafe');
 
         const name = req.params.name;
 
-        if (!name) throw new Error('No id');
+        if (!name) throw new Error('No name');
 
-        await Cafe.destroy({
+        const gotCafe = await Cafe.findOne({
             where: {
                 name
-            }
+            },
         });
+
+        if (!gotCafe) throw new Error('Cafe with this name does not exist');
 
         res.json({
             success: true,
-            message: 'Cafe successfully deleted'
+            message: gotCafe
         });
     } catch (e) {
         console.log(e);

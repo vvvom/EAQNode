@@ -6,16 +6,13 @@ module.exports = (sequelize, DataTypes) => {
                 primaryKey: true,
                 autoIncrement: true
             },
-            message: {
-                type: DataTypes.STRING
-            },
             sum: {
                 type: DataTypes.FLOAT
             },
             time: {
                 type: DataTypes.DATE
             },
-            type_of_paid_id: {
+            type_of_pay_id: {
                 type: DataTypes.INTEGER
             },
             cafe_id: {
@@ -30,7 +27,10 @@ module.exports = (sequelize, DataTypes) => {
             timestamps: false
         }
     );
-
+    // const Tag = sequelize.define('tag', {
+    //     name: Sequelize.STRING,
+    //     status: Sequelize.STRING
+    // });
     const Type_payments = sequelize.import('./Payments_type.js');
     Order.belongsTo(Type_payments, {foreignKey: 'type_of_pay_id'});
 

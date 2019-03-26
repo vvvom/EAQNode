@@ -2,23 +2,29 @@ let dataBase = require('../../dataBase').getInstance();
 
 module.exports = async (req, res) => {
     try {
+        const Menu = dataBase.getModel('Menu');
         const Cafe = dataBase.getModel('Cafe');
+
 
         const Name = req.params.name;
 
         if (!Name) throw new Error('No name');
 
-        const CafeInfo = req.body;
+        const MenuInfo = req.body;
 
-        if (!CafeInfo) throw new Error('Body is empty');
+        if (!MenuInfo) throw new Error('Body is empty');
 
-        const {name, password} = CafeInfo;
+        const {cafe_id, name} = MenuInfo;
 
-        if (!name || !password) throw new Error('Some fields are empty');
+        if (!cafe_id || !name)
+            throw new Error('Some fields are empty');
 
-        await Cafe.update({
+        await Menu.update({
+            cafe_id,
             name,
-            password,
+
+            include: [Cafe]
+
         }, {
             where: {
                 Name
@@ -27,7 +33,7 @@ module.exports = async (req, res) => {
 
         res.json({
             success: true,
-            message: 'Cafe successfully updated'
+            message: 'Drink successfully updated'
         });
     } catch (e) {
         console.log(e);
