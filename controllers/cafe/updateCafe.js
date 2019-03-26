@@ -8,11 +8,11 @@ module.exports = async (req, res) => {
 
         if (!Name) throw new Error('No name');
 
-        const CafeInfo = req.body;
+        const cafeInfo = req.body;
 
-        if (!CafeInfo) throw new Error('Body is empty');
+        if (!cafeInfo) throw new Error('Body is empty');
 
-        const {name, password} = CafeInfo;
+        const {name, password} = cafeInfo;
 
         if (!name || !password) throw new Error('Some fields are empty');
 

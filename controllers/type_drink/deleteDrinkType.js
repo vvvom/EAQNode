@@ -2,21 +2,21 @@ let dataBase = require('../../dataBase').getInstance();
 
 module.exports = async (req, res) => {
     try {
-        const Cafe = dataBase.getModel('Cafe');
+        const Drink_type = dataBase.getModel('Type_drink');
 
-        const name = req.params.name;
+        const id = req.params.id;
 
-        if (!name) throw new Error('No name');
+        if (!id) throw new Error('No id');
 
-        await Cafe.destroy({
+        await Drink_type.destroy({
             where: {
-                name
+                id
             }
         });
 
         res.json({
             success: true,
-            message: 'Cafe successfully deleted'
+            message: 'Drink type successfully deleted'
         });
     } catch (e) {
         console.log(e);

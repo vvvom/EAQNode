@@ -33,7 +33,7 @@ module.exports = async (req, res) => {
 
         res.json({
             success: true,
-            message: 'Drink successfully updated'
+            message: 'Menu successfully updated'
         });
     } catch (e) {
         console.log(e);

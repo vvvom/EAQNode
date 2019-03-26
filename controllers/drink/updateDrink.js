@@ -11,11 +11,11 @@ module.exports = async (req, res) => {
 
         if (!id) throw new Error('No id');
 
-        const DrinkInfo = req.body;
+        const drinkInfo = req.body;
 
-        if (!DrinkInfo) throw new Error('Body is empty');
+        if (!drinkInfo) throw new Error('Body is empty');
 
-        const {name, ingredients, type_drink_id, price, volume, menu_id, degrees, about} = DrinkInfo;
+        const {name, ingredients, type_drink_id, price, volume, menu_id, degrees, about} = drinkInfo;
 
         if (!name || !ingredients || !type_drink_id || !price || !volume || !menu_id || !degrees || !about)
             throw new Error('Some fields are empty');

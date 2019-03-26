@@ -3,6 +3,7 @@ const dataBase = require('../../dataBase').getInstance();
 module.exports = async (req, res) => {
     try {
         const Cafe = dataBase.getModel('Cafe');
+
         const gotCafe = await Cafe.findAll({});
 
         if (!gotCafe) throw new Error('Cafe not exist');

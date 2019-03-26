@@ -29,7 +29,7 @@ module.exports = async (req, res) => {
 
         res.json({
             success: true,
-            message: 'Foods successfully inserted'
+            message: 'Food successfully inserted'
         });
     } catch (e) {
         console.log(e);
