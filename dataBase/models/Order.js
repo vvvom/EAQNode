@@ -1,4 +1,4 @@
-module.export = (sequelize, DataTypes)=> {
+module.exports = (sequelize, DataTypes)=> {
     const Order = sequelize.define('Order',{
         id: {
             type: DataTypes.INTEGER,
@@ -8,7 +8,7 @@ module.export = (sequelize, DataTypes)=> {
         sum: {
             type: DataTypes.FLOAT
         },
-        time: {
+        created_at: {
             type: DataTypes.DATE
         },
         type_of_pay_id:{

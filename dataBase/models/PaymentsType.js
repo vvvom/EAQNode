@@ -1,4 +1,4 @@
-module.export = (sequelize, DataTypes)=> {
+module.exports = (sequelize, DataTypes)=> {
     const PaymentsType = sequelize.define('Payments_type',{
         id: {
             type: DataTypes.INTEGER,
