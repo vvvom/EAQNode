@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
 
         if (!RecordInfo) throw new Error('Body is empty');
 
-        const {food_id, drink_id, order_id} = DrinkInfo;
+        const {food_id, drink_id, order_id} = RecordInfo;
 
         if (!food_id || !drink_id || !order_id)
             throw new Error('Some fields are empty');
