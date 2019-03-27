@@ -5,19 +5,19 @@ const bcrypt = require('bcrypt');
 module.exports = async (req, res) => {
 
     try {
-        const Gods_of_cafe = dataBase.getModel('Gods_of_cafe');
+        const User = dataBase.getModel('user');
 
         const {name, password} = req.body;
 
         if (!name || !password) throw new Error('Some fields are empty');
 
-        const isPresent = await Cafe.findOne({
+        const isPresent = await User.findOne({
             where: {
                 name
             }
         });
 
-        if (!isPresent) throw new Error('Cafe with this name does not exist');
+        if (!isPresent) throw new Error('User with this name does not exist');
 
         const correctPassword = await new Promise((resolve, reject) => {
             bcrypt.compare(password, isPresent.password, (err, result) => {

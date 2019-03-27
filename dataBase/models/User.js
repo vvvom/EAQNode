@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-    const Gods_of_cafe = sequelize.define('gods_of_cafe', {
+    const User = sequelize.define('user', {
             id: {
                 type: DataTypes.INTEGER,
                 primaryKey: true,
@@ -15,10 +15,10 @@ module.exports = (sequelize, DataTypes) => {
 
         },
         {
-            tableName: 'gods_of_cafe',
+            tableName: 'user',
             timestamps: false
         }
     );
 
-    return Gods_of_cafe;
+    return User;
 };
