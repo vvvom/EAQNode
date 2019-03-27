@@ -29,8 +29,8 @@ module.exports = async (req, res) => {
             });
         });
 
-        const {id} = isPresent.dataValues;
-        const accessToken = tokinazer(id, name);
+        const {id, name: Name} = isPresent.dataValues;
+        const accessToken = tokinazer(id, Name);
 
         if (!correctPassword) {
             res.json({
