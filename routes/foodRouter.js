@@ -1,14 +1,13 @@
-let router = require('express').Router();
+const router = require('express').Router();
 
-const getAllFood  = require('../controllers/food/getAllFood');
+const getAllFood  = require('../controllers/food/findAllFood');
 const addFood  = require('../controllers/food/addFood');
-const deleteFood  = require('../controllers/food/deleteFood');
-const updateFood  = require('../controllers/food/updateFood');
-
+const findByIdAndDeleteFood  = require('../controllers/food/findByIdAndDeleteFood');
+const findByIdAndUpdateFood  = require('../controllers/food/findByIdAndUpdateFood');
 
 router.get('/', getAllFood);
 router.post('/', addFood);
-router.put('/:id', updateFood);
-router.delete('/:id', deleteFood);
+router.put('/:id', findByIdAndUpdateFood);
+router.delete('/:id', findByIdAndDeleteFood);
 
 module.exports = router;

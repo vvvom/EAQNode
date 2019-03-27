@@ -5,21 +5,21 @@ module.exports = async (req, res) => {
     try {
         const Cafe = dataBase.getModel('Cafe');
 
-        const id = req.params.id;
+        const Name = req.params.name;
 
-        if (!id) throw new Error('No id');
+        if (!Name) throw new Error('No name');
 
-        const gotCafe = await Cafe.findOne({
+        const findCafeByName = await Cafe.findOne({
             where: {
-                id
+                Name
             },
         });
 
-        if (!gotCafe) throw new Error('Cafe with this id does not exist');
+        if (!findCafeByName) throw new Error('Cafe with this name does not exist');
 
         res.json({
             success: true,
-            message: gotCafe
+            message: findCafeByName
         });
     } catch (e) {
         console.log(e);

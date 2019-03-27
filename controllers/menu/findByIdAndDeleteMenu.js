@@ -2,24 +2,13 @@ let dataBase = require('../../dataBase').getInstance();
 
 module.exports = async (req, res) => {
     try {
-        const Cafe = dataBase.getModel('Cafe');
+        const Menu = dataBase.getModel('Menu');
 
         const id = req.params.id;
 
         if (!id) throw new Error('No id');
 
-        const CafeInfo = req.body;
-
-        if (!CafeInfo) throw new Error('Body is empty');
-
-        const {name, password} = CafeInfo;
-
-        if (!name || !password) throw new Error('Some fields are empty');
-
-        await Cafe.update({
-            name,
-            password,
-        }, {
+        await Menu.destroy({
             where: {
                 id
             }
@@ -27,7 +16,7 @@ module.exports = async (req, res) => {
 
         res.json({
             success: true,
-            message: 'Cafe successfully updated'
+            message: 'Menu successfully deleted'
         });
     } catch (e) {
         console.log(e);

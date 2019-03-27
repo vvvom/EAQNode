@@ -6,16 +6,13 @@ module.exports = (sequelize, DataTypes) => {
                 primaryKey: true,
                 autoIncrement: true
             },
-            message: {
-                type: DataTypes.STRING
-            },
             sum: {
                 type: DataTypes.FLOAT
             },
             time: {
                 type: DataTypes.DATE
             },
-            type_of_paid_id: {
+            type_of_pay_id: {
                 type: DataTypes.INTEGER
             },
             cafe_id: {

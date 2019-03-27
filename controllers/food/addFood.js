@@ -1,4 +1,5 @@
 const dataBase = require('../../dataBase').getInstance();
+
 module.exports = async (req, res) => {
     try {
         const Food = dataBase.getModel('Food');
@@ -10,6 +11,13 @@ module.exports = async (req, res) => {
         const {name, ingredients, price, weight, about} = FoodInfo;
 
         if (!name || !ingredients || !price || !weight || !about) throw new Error('Some fields are empty');
+        const alreadyExist = await Cafe.findOne({
+            where: {
+                name
+            }
+        });
+
+        if (alreadyExist)throw new Error('Food with this name already exists');
 
         await Food.create({
             name,

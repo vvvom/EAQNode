@@ -2,14 +2,17 @@ const dataBase = require('../../dataBase').getInstance();
 
 module.exports = async (req, res) => {
     try {
+        const Order = dataBase.getModel('Order');
         const Cafe = dataBase.getModel('Cafe');
-        const gotCafe = await Cafe.findAll({});
+        const PaymentsType = dataBase.getModel('Payments_type');
 
-        if (!gotCafe) throw new Error('Cafe not exist');
+        const findOrder = await Order.findAll({include: [PaymentsType, Cafe]});
+
+        if (!findOrder) throw new Error('Order not exist');
 
         res.json({
             success: true,
-            message: gotCafe
+            message: findOrder
         });
     } catch (e) {
         console.log(e);
@@ -19,4 +22,3 @@ module.exports = async (req, res) => {
         });
     }
 };
-

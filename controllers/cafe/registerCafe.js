@@ -1,5 +1,5 @@
 const dataBase = require('../../dataBase').getInstance();
-const bcrypt = require('bcrypt');
+let bcrypt = require('bcrypt');
 
 module.exports = async (req, res) => {
     try {
@@ -11,19 +11,21 @@ module.exports = async (req, res) => {
 
         const {name, password} = cafeInfo;
 
+
         if (!name || !password) throw new Error('Some fields are empty');
 
-        const alreadyExist = await Cafe.findOne({
+
+        const ifExist = await Cafe.findOne({
             where: {
                 name
             }
         });
+
         const saltRounds = 10;
 
-        if (alreadyExist) {
-            throw new Error('Cafe with this name already exists');
-
-        } else bcrypt.hash(password, saltRounds,async (err, hash) => {
+        if (ifExist) {
+            throw new Error('Cafe already exist');
+        } else bcrypt.hash(password, saltRounds, async (err, hash) => {
             if (err) console.log(err);
             else await Cafe.create({
                 name,
