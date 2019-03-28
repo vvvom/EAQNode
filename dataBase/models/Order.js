@@ -25,9 +25,9 @@ module.exports = (sequelize, DataTypes)=> {
         timestamps:false
 
     });
-    const Cafe = sequelize.import('./Cafe.js');
-    Order.belongsTo(Cafe, {foreignKey: 'cafe_id'});
     const PaymentsType = sequelize.import('./PaymentsType.js');
     Order.belongsTo(PaymentsType, {foreignKey: 'type_of_pay_id'});
+    const Cafe = sequelize.import('./Cafe.js');
+    Order.belongsTo(Cafe, {foreignKey: 'cafe_id'});
     return Order;
 };

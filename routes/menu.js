@@ -9,7 +9,7 @@ const deleteMenu = require('../controllers/menu/deleteMenu');
 menuRouter.get('/',findAllMenu);
 menuRouter.get('/:name', findMenuByName);
 menuRouter.post('/', addMenu);
-menuRouter.put('/', updateMenu);
+menuRouter.put('/:name', updateMenu);
 menuRouter.delete('/:name', deleteMenu);
 
 module.exports = menuRouter;

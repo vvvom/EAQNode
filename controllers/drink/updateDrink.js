@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
 
         const {name, ingredients,type_drink_id, price, volume, menu_id, degrees, about } = drinkInfo;
 
-        if (!sum ||!name||!ingredients||!type_drink_id||!price||!volume||!menu_id||!degrees||!about)
+        if (!name||!ingredients||!type_drink_id||!price||!volume||!menu_id||!degrees||!about)
             throw new Error('Some fields are empty');
 
         await Drink.update({

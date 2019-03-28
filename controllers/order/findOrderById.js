@@ -3,16 +3,15 @@ const dataBase = require('../../dataBase').getInstance();
 module.exports = async (req, res)=>{
     try {
         const Order = dataBase.getModel('Order');
-        const PaymentsType = dataBase.getModel('Payments_type');
+        const PaymentsType = dataBase.getModel('PaymentsType');
         const Cafe = dataBase.getModel('Cafe');
-        const id = dataBase.params.id;
+        const id = req.params.id;
         if (!id)throw new Error('No order');
         const order = await Order.findOne({
             where:{
-                id,
-
-                include: [PaymentsType, Cafe]
-            }
+                id
+            },
+            include: [PaymentsType, Cafe]
         });
         if (!order)throw new Error('Order does not exist');
         res.json({

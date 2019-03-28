@@ -3,8 +3,8 @@ const dataBase = require('../../dataBase').getInstance();
 module.exports = async (req, res)=>{
     try {
         const Cafe = dataBase.getModel('Cafe');
-        const name = dataBase.params.name;
-        if (!name)throw new Error('No name');
+        const name = req.params.name;
+        if (!name) throw new Error('No name');
         const cafe = await Cafe.findOne({
             where:{
                 name

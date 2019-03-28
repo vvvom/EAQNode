@@ -4,7 +4,7 @@ module.exports = async (req, res) => {
     try {
         const TypeDrink = dataBase.getModel('TypeDrink');
 
-        const type = req.params.name;
+        const type = req.params.type;
 
         if (!type) throw new Error('No type');
 

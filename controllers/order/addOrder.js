@@ -11,13 +11,13 @@ module.exports = async (req, res) => {
 
         if (!orderInfo) throw new Error('Body is empty');
 
-        const {sum, time,type_of_pay_id, cafe_id, table_number } = orderInfo;
+        const {sum, created_at,type_of_pay_id, cafe_id, table_number } = orderInfo;
 
-        if (!sum ||!time||!type_of_pay_id||!cafe_id||!table_number) throw new Error('Some fields are empty');
+        if (!sum ||!created_at||!type_of_pay_id||!cafe_id||!table_number) throw new Error('Some fields are empty');
 
         await Order.create({
             sum,
-            time,
+            created_at,
             type_of_pay_id,
             cafe_id,
             table_number,

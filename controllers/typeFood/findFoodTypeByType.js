@@ -5,21 +5,21 @@ module.exports = async (req, res) => {
     try {
         const TypeFood = dataBase.getModel('TypeFood');
 
-        const Type = req.params.type;
+        const type = req.params.type;
 
-        if (!Type) throw new Error('No type');
+        if (!type) throw new Error('No type');
 
-        const type = await TypeFood.findOne({
+        const oneType = await TypeFood.findOne({
             where: {
                 type
             },
         });
 
-        if (!type) throw new Error('Type with this id does not exist');
+        if (!oneType) throw new Error('Type with this id does not exist');
 
         res.json({
             success: true,
-            message: type
+            message: oneType
         });
     } catch (e) {
         console.log(e);

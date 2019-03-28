@@ -5,14 +5,13 @@ module.exports = async (req, res)=>{
         const Menu = dataBase.getModel('Menu');
         const Cafe = dataBase.getModel('Cafe');
 
-const name = dataBase.params.name;
+const name = req.params.name;
 if (!name)throw new Error('No menu');
 const menu = await Menu.findOne({
     where:{
-        name,
-
-        include: [Cafe]
-    }
+        name
+    },
+    include: [Cafe]
 });
 if (!menu)throw new Error('Menu does not exist');
 res.json({

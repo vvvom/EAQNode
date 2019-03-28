@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes)=> {
         }
 
     }, {
-        tableName: 'type_food',
+        tableName: 'ref_journal',
         timestamps:false
 
     });

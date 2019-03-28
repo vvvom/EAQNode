@@ -5,14 +5,14 @@ module.exports = async (req, res)=>{
         const Drink = dataBase.getModel('Drink');
         const TypeDrink = dataBase.getModel('TypeDrink');
         const Menu = dataBase.getModel('Menu');
-const name = dataBase.params.name;
+const name = req.params.name;
 if (!name)throw new Error('No drink');
 const drink = await Drink.findOne({
     where:{
-        name,
+        name
 
-        include: [TypeDrink, Menu]
-    }
+    },
+    include: [TypeDrink, Menu]
 });
 if (!drink)throw new Error('Drink does not exist');
 res.json({
