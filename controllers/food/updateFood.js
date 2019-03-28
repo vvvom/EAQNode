@@ -7,9 +7,9 @@ module.exports = async (req, res) => {
         const Menu = dataBase.getModel('Menu');
 
 
-        const id = req.params.id;
+        const Name = req.params.name;
 
-        if (!id) throw new Error('No id');
+        if (!Name) throw new Error('No name');
 
         const foodInfo = req.body;
 
@@ -33,7 +33,7 @@ module.exports = async (req, res) => {
 
         }, {
             where: {
-                id
+                name
             }
         });
 

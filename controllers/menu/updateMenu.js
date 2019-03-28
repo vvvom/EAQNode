@@ -6,9 +6,9 @@ module.exports = async (req, res) => {
         const Cafe = dataBase.getModel('Cafe');
 
 
-        const Name = req.params.name;
+        const type = req.params.type;
 
-        if (!Name) throw new Error('No name');
+        if (!type) throw new Error('No type');
 
         const menuInfo = req.body;
 
@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
 
         }, {
             where: {
-                Name
+                type
             }
         });
 

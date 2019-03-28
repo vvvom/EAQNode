@@ -5,11 +5,11 @@ module.exports = async (req, res)=>{
         const Food = dataBase.getModel('Food');
         const TypeFood = dataBase.getModel('TypeFood');
         const Menu = dataBase.getModel('Menu');
-        const id = dataBase.params.id;
-        if (!id)throw new Error('No food');
+        const name = dataBase.params.name;
+        if (!name)throw new Error('No food');
         const food = await Food.findOne({
             where:{
-                id,
+                name,
 
                 include: [TypeFood, Menu]
             }

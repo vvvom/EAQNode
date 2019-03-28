@@ -1,6 +1,6 @@
 const foodRouter = require('express').Router();
 
-const findFoodById = require('../controllers/food/findFoodById');
+const findFoodByName = require('../controllers/food/findFoodByName');
 const findAllFood = require('../controllers/food/findAllFood');
 const addFood = require('../controllers/food/addFood');
 const updateFood = require('../controllers/food/updateFood');
@@ -8,11 +8,11 @@ const deleteFood = require('../controllers/food/deleteFood');
 
 
 
-foodRouter.get('/:id', findFoodById);
+foodRouter.get('/:name', findFoodByName);
 foodRouter.get('/',findAllFood);
 foodRouter.post('/', addFood);
-foodRouter.put('/:id', updateFood);
-foodRouter.delete('/:id', deleteFood);
+foodRouter.put('/:name', updateFood);
+foodRouter.delete('/:name', deleteFood);
 
 
 module.exports = foodRouter;

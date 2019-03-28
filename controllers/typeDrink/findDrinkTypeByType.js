@@ -1,25 +1,26 @@
+
 let dataBase = require('../../dataBase').getInstance();
 
 module.exports = async (req, res) => {
 
     try {
-        const TypeFood = dataBase.getModel('TypeFood');
+        const TypeDrink = dataBase.getModel('TypeDrink');
 
-        const id = req.params.id;
+        const type = req.params.type;
 
-        if (!id) throw new Error('No id');
+        if (!type) throw new Error('No type');
 
-        const type = await TypeFood.findOne({
+        const typed = await TypeDrink.findOne({
             where: {
-                id
+                type
             },
         });
 
-        if (!type) throw new Error('Type with this id does not exist');
+        if (!typed) throw new Error('Type with this id does not exist');
 
         res.json({
             success: true,
-            message: type
+            message: typed
         });
     } catch (e) {
         console.log(e);

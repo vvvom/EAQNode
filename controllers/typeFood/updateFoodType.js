@@ -4,9 +4,9 @@ module.exports = async (req, res) => {
     try {
         const TypeFood = dataBase.getModel('TypeFood');
 
-        const id = req.params.id;
+        const Type = req.params.type;
 
-        if (!id) throw new Error('No id');
+        if (!Type) throw new Error('No type');
 
         const typeFoodInfo = req.body;
 
@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
 
         }, {
             where: {
-                id
+                type
             }
         });
 

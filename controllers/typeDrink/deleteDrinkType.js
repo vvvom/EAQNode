@@ -4,13 +4,13 @@ module.exports = async (req, res) => {
     try {
         const TypeDrink = dataBase.getModel('TypeDrink');
 
-        const id = req.params.id;
+        const type = req.params.name;
 
-        if (!id) throw new Error('No id');
+        if (!type) throw new Error('No type');
 
         await TypeDrink.destroy({
             where: {
-                id
+                type
             }
         });
 

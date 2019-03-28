@@ -2,11 +2,11 @@ const dataBase = require('../../dataBase').getInstance();
 module.exports = async (req, res)=>{
     try {
         const Drink = dataBase.getModel('Drink');
-        const drinkForDelete = req.params.id;
+        const drinkForDelete = req.params.name;
         if (!drinkForDelete)throw  new Error('No drink');
         await Drink.destroy({
             where:{
-                id: drinkForDelete
+                name: drinkForDelete
             }
         });
         res.json({

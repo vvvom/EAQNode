@@ -5,11 +5,11 @@ module.exports = async (req, res)=>{
         const Drink = dataBase.getModel('Drink');
         const TypeDrink = dataBase.getModel('TypeDrink');
         const Menu = dataBase.getModel('Menu');
-const id = dataBase.params.id;
-if (!id)throw new Error('No drink');
+const name = dataBase.params.name;
+if (!name)throw new Error('No drink');
 const drink = await Drink.findOne({
     where:{
-        id,
+        name,
 
         include: [TypeDrink, Menu]
     }

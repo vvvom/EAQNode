@@ -1,18 +1,17 @@
-
 let dataBase = require('../../dataBase').getInstance();
 
 module.exports = async (req, res) => {
 
     try {
-        const TypeDrink = dataBase.getModel('TypeDrink');
+        const TypeFood = dataBase.getModel('TypeFood');
 
-        const id = req.params.id;
+        const Type = req.params.type;
 
-        if (!id) throw new Error('No id');
+        if (!Type) throw new Error('No type');
 
-        const type = await TypeDrink.findOne({
+        const type = await TypeFood.findOne({
             where: {
-                id
+                type
             },
         });
 

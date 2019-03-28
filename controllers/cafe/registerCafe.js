@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
         if (!name || !password) throw new Error('Some fields are empty');
 
         const alreadyExist = await Cafe.findOne({
-            were: {
+            where: {
                 name
             }
         });
@@ -22,12 +22,11 @@ module.exports = async (req, res) => {
 
         if (alreadyExist) {
             throw new Error('Cafe with this name already exist')
-        } else
-            bcrypt.hash(password, saltRounds, async (err, hash) => {
+        } else bcrypt.hash(password, saltRounds, async (err, hash) => {
                 if (err) console.log(err);
                 else await Cafe.create({
                     name,
-                    password: hash,
+                    password: hash
                 });
 
             });
