@@ -1,5 +1,8 @@
 const dataBase = require('../../dataBase').getInstance();
 const bcrypt = require('bcrypt');
+const tokenVerify = require('../../helpers/tokenVerificator');
+const secret = require('../../config/secret');
+const userRoles = require('../../config/userRoles');
 
 module.exports = async (req, res) => {
 
@@ -9,6 +12,14 @@ module.exports = async (req, res) => {
         const cafeInfo = req.body;
 
         if (!cafeInfo) throw new Error('No cafe body');
+
+        const token = req.get('Authorization');
+
+        if (!token) throw new Error('No token');
+
+        const {name: nameFromToken} = tokenVerify(token, secret);
+
+        if (nameFromToken !== userRoles.Admin) throw new Error('You are not admin, you can\'t do this');
 
         const {name, password} = cafeInfo;
 
