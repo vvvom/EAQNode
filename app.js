@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const dataBase = require('./dataBase').getInstance();
 dataBase.setModels();
+
 const apiRouter = require('./router/apiRouter');
 
 

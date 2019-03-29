@@ -4,7 +4,7 @@ module.exports = async (req, res) => {
     try {
         const CafeModel = dataBase.getModel('Cafe');
         const name = req.params.name;
-        if (!name) throw new Error('Cafe name is bad');
+        if (!name) throw new Error('Cafe params is empty');
 
         const cafe = await CafeModel.findOne({
             where: {

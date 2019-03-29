@@ -7,7 +7,7 @@ module.exports = async (req,res) => {
         const  cafeInfo = req.body;
 
         if (!cafeInfo) throw new Error('No cafe body');
-        const {name,password} = cafeInfo;
+        const {name, password} = cafeInfo;
 
         if (!name || !password) throw  new Error('Some field is empty');
         const alreadyExist =  await CafeModel.findOne({
@@ -30,7 +30,7 @@ module.exports = async (req,res) => {
 
         res.json({
             success: true,
-            message: `Cafe ${name} successfully registerd`
+            message: `Cafe ${name} successfully registered`
         });
         
     }catch (e) {
