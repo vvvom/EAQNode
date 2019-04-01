@@ -12,12 +12,13 @@ module.exports = async (req, res) => {
 
         if (!typeDrinkInfo) throw new Error('Body is empty');
 
-        const {type} = typeDrinkInfo;
+        const {type, menu_id} = typeDrinkInfo;
 
-        if (!type)throw new Error('Field is empty');
+        if (!type ||!menu_id)throw new Error('Field is empty');
 
         await TypeDrink.update({
-            type
+            type,
+            menu_id
 
         }, {
             where: {

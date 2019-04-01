@@ -8,6 +8,9 @@ module.exports = (sequelize, DataTypes)=> {
         type: {
             type: DataTypes.STRING
         },
+        menu_id: {
+            type: DataTypes.INTEGER
+        },
 
     }, {
         tableName: 'type_drink',

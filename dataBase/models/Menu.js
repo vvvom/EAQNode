@@ -5,12 +5,11 @@ module.exports = (sequelize, DataTypes)=> {
             autoIncrement: true,
             primaryKey: true
         },
-        cafe_id: {
-            type: DataTypes.INTEGER
-        },
-
         name: {
             type: DataTypes.STRING
+        },
+        cafe_id: {
+            type: DataTypes.INTEGER
         }
     }, {
         tableName: 'menu',
