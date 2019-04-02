@@ -9,7 +9,7 @@ module.exports = async (req,res) => {
         if (!cafeInfo) throw new Error('No cafe body');
         const {name, password} = cafeInfo;
 
-        if (!name || !password) throw  new Error('Some field is empty');
+        if (!name || !password) throw  new Error('Name or password are empty');
         const alreadyExist =  await CafeModel.findOne({
             where:{
                 name
@@ -18,11 +18,11 @@ module.exports = async (req,res) => {
 
         const saltRounds = 10;
 
-        if (alreadyExist){
-            throw new Error('Cafe with this name already exist')
-        }else bcrypt.hash(password,saltRounds,async (err,hash) => {
+        if (alreadyExist) throw new Error('Cafe with this name already exist');
+
+        bcrypt.hash(password,saltRounds,async (err,hash) => {
             if (err) console.log(err);
-            else await CafeModel.create({
+            await CafeModel.create({
                 name,
                 password: hash
             });

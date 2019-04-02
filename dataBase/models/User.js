@@ -1,5 +1,5 @@
 module.exports = (sequelize, type)=>{
-    return sequelize.define('Admin',{
+    return sequelize.define('User',{
         id:{
             type: type.INTEGER,
             primaryKey: true,
@@ -14,7 +14,7 @@ module.exports = (sequelize, type)=>{
             allowNull: false
         }
     },{
-        tableName:'admin',
+        tableName:'user',
         timestamps: false
     })
 };

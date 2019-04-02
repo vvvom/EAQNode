@@ -4,10 +4,10 @@ const bcrypt = require('bcrypt');
 
 module.exports = async (req, res) => {
     try {
-        const AdminModel = dataBase.getModel('Admin');
+        const UserModel = dataBase.getModel('User');
         const {name, password} = req.body;
         if (!name || !password) throw new Error('Some field are empty')
-        const isPresent = await AdminModel.findOne({
+        const isPresent = await UserModel.findOne({
             where: {
                 name
             }

@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
             }
         });
 
-        if (!cafe) throw new Error('Not found cafe with this name');
+        if (!cafe) throw new Error('Cafe not exist with this name');
 
         res.json({
             success: true,

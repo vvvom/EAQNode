@@ -5,10 +5,10 @@ const secret = require('../../config/secret');
 module.exports = async (req, res) => {
     try {
         const CafeModel = dataBase.getModel('Cafe');
-        const AdminModel = dataBase.getModel('Admin');
+        const UserModel = dataBase.getModel('User');
         const nameCafeForDelete = req.params.name;
 
-        if (!nameCafeForDelete) throw new Error('No name for delete ');
+        if (!nameCafeForDelete) throw new Error('No name cafe for delete ');
 
         const alreadyExist =  await CafeModel.findOne({
             where:{
@@ -19,10 +19,10 @@ module.exports = async (req, res) => {
 
         const token = req.get('Authorization');
         if (!token) throw new Error('No token');
-        const {id: adminId} = tokenVerificator(token, secret);
-        const isUserRegistered = await AdminModel.findByPk(adminId);
+        const {id: userId} = tokenVerificator(token, secret);
+        const isUserRegistered = await UserModel.findByPk(userId);
 
-        if (!isUserRegistered) throw new Error('This is not admin');
+        if (!isUserRegistered) throw new Error('This is not user');
 
         await CafeModel.destroy({
             where:{

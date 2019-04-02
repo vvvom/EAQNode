@@ -1,5 +1,5 @@
 module.exports = (sequelize, type)=>{
-    return sequelize.define('TypeDrink',{
+    const TypeDrink =  sequelize.define('TypeDrink',{
         id:{
             type: type.INTEGER,
             primaryKey: true,
@@ -8,9 +8,16 @@ module.exports = (sequelize, type)=>{
         type:{
             type: type.STRING,
             allowNull: false
+        },
+        menu_id:{
+            type: type.INTEGER,
+            allowNull: true
         }
     },{
         tableName:'type_drink',
         timestamps: false
     });
+    const menuId = sequelize.import('./Menu.js');
+    TypeDrink.belongsTo(menuId,{foreignKey: 'menu_id'});
+    return TypeDrink
 };
