@@ -8,7 +8,6 @@ module.exports = async (req, res) => {
         const Cafe = dataBase.getModel('Cafe');
 
         const {name, password} = req.body;
-
         if (!name || !password) throw new Error('Some fields are empty');
 
         const isPresent = await Cafe.findOne({
@@ -16,7 +15,6 @@ module.exports = async (req, res) => {
                 name
             }
         });
-
         if (!isPresent) throw new Error('Cafe with this name does not exist');
 
         const correctPassword = await new Promise((resolve, reject) => {
@@ -29,9 +27,9 @@ module.exports = async (req, res) => {
             });
         });
 
-        const {id, name: Name} = isPresent.dataValues;
-        const accessToken = tokinazer(id, Name);
+        const {id, name: Name} = isPresent;
 
+        const accessToken = tokinazer(id, Name);
         if (!correctPassword) {
             res.json({
                 success: false,

@@ -1,7 +1,9 @@
-let router = require('express').Router();
+const router = require('express').Router();
 
-const FindPaymentById  = require('../controllers/payment/fidnPaymentById');
+const FindPaymentByType = require('../controllers/payment/fidnPaymentByType');
+const GotAllPayments  = require('../controllers/payment/gotAllPayments');
 
-router.get('/:id', FindPaymentById);
+router.get('/:type', FindPaymentByType);
+router.get('/', GotAllPayments);
 
 module.exports = router;

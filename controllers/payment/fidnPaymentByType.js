@@ -5,13 +5,13 @@ module.exports = async (req, res) => {
     try {
         const Payment = dataBase.getModel('Payments_type');
 
-        const id = req.params.id;
+        const type = req.params.type;
 
-        if (!id) throw new Error('No id');
+        if (!type) throw new Error('No type');
 
         const gotPayment = await Payment.findOne({
             where: {
-                id
+                type
             }
         });
 

@@ -1,4 +1,4 @@
-let router = require('express').Router();
+const router = require('express').Router();
 
 const GetAllRecords  = require('../controllers/ref_journal/gotAllRecords');
 const AddRecord  = require('../controllers/ref_journal/addRecord')

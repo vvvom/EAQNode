@@ -8,13 +8,14 @@ module.exports = async (req, res) => {
 
         if (!drinkTypeInfo) throw new Error('Body is empty');
 
-        const {type} = drinkTypeInfo;
+        const {type, menu_id} = drinkTypeInfo;
 
-        if (!type)
+        if (!type || !menu_id)
             throw new Error('Some fields are empty');
 
         await Drink_type.create({
             type,
+            menu_id,
         });
 
         res.json({

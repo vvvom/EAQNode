@@ -1,34 +1,32 @@
 const dataBase = require('../../dataBase').getInstance();
 const tokenVerifikator = require('../../helpers/tokenVerificator');
 const secret = require('../../config/secret');
-const userRole = require('../../config/userRoles');
 
 module.exports = async (req, res) => {
     try {
         const Cafe = dataBase.getModel('Cafe');
 
-        const {admin} = userRole;
-
         const token = req.get('Authorization');
-        if (!token) throw new Error('No token');
+        const {id} = tokenVerifikator(token, secret);
 
-        const {name: nameFromToken} = tokenVerifikator(token, secret);
-        if (nameFromToken !== admin) throw new Error('You are not admin');
+        const ifExist = Cafe.findByPk(id);
+        if (!ifExist) throw new Error('Cafe with this id does not exist');
 
-        const gotCafe = await Cafe.findAll({});
-
-        if (!gotCafe) throw new Error('Cafe not exist');
+        const cafe = {
+            id: ifExist.id,
+            name: ifExist.name
+        };
 
         res.json({
             success: true,
-            message: gotCafe
+            message: cafe
         });
     } catch (e) {
-        console.log(e);
         res.json({
             success: false,
             message: e.message
         });
     }
 };
+
 

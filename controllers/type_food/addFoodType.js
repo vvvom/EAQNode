@@ -8,13 +8,14 @@ module.exports = async (req, res) => {
 
         if (!foodTypeInfo) throw new Error('Body is empty');
 
-        const {type} = foodTypeInfo;
+        const {type, menu_id} = foodTypeInfo;
 
-        if (!type)
+        if (!type || !menu_id)
             throw new Error('Some fields are empty');
 
         await Food_type.create({
             type,
+            menu_id,
         });
 
         res.json({

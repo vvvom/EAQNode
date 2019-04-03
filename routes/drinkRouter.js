@@ -1,9 +1,9 @@
-let router = require('express').Router();
+const router = require('express').Router();
 
 const GetAllDrink  = require('../controllers/drink/gotAllDrinks');
 const AddDrink  = require('../controllers/drink/addDrink');
 const DeleteDrink  = require('../controllers/drink/deleteDrink');
-const FindDrinkById  = require('../controllers/drink/fidnDrinkById');
+const FindDrinkById  = require('../controllers/drink/fidnDrinkByName');
 const UpdateDrink  = require('../controllers/drink/updateDrink');
 
 

@@ -1,24 +1,26 @@
-let dataBase = require('../../dataBase').getInstance();
+const dataBase = require('../../dataBase').getInstance();
+const secret = require('../../config/secret');
+const tokenVerificator = require('../../helpers/tokenVerificator');
 
 module.exports = async (req, res) => {
 
     try {
         const Drink = dataBase.getModel('Drink');
-        const Type_Drink = dataBase.getModel('Type_drink');
-        const Menu = dataBase.getModel('Menu');
 
+        const name = req.params.name;
+        if (!name) throw new Error('No id');
 
-        const id = req.params.id;
+        const token = req.get('Authorization');
+        if (!token) throw new Error("No token");
 
-        if (!id) throw new Error('No id');
+        const {id: idFromToken} = tokenVerificator(token, secret);
 
         const gotDrink = await Drink.findOne({
             where: {
-                id
-            },
-            include: [Type_Drink, Menu]
+                name,
+                cafe_id: idFromToken
+            }
         });
-
         if (!gotDrink) throw new Error('Drink with this id does not exist');
 
         res.json({

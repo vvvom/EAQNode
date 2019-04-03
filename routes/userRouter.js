@@ -1,7 +1,7 @@
-let router = require('express').Router();
+const router = require('express').Router();
 
 const LoginationUser  = require('../controllers/user/loginationUser');
 
-router.post('/loginations/users', LoginationUser);
+router.post('/', LoginationUser);
 
 module.exports = router;

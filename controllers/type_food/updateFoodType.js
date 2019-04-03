@@ -4,24 +4,24 @@ module.exports = async (req, res) => {
     try {
         const Type_Food = dataBase.getModel('Type_food');
 
-        const id = req.params.id;
+        const Type = req.params.type;
 
-        if (!id) throw new Error('No id');
+        if (!Type) throw new Error('No type');
 
         const typeFoodInfo = req.body;
 
         if (!typeFoodInfo) throw new Error('Body is empty');
 
-        const {type} = typeFoodInfo;
+        const {type, menu_id} = typeFoodInfo;
 
-        if (type)
-            throw new Error('Some fields are empty');
+        if (!type || !menu_id) throw new Error('Some fields are empty');
 
         await Type_Food.update({
             type,
+            menu_id,
         }, {
             where: {
-                id
+                Type
             }
         });
 

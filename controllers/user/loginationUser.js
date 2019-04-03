@@ -5,14 +5,14 @@ const bcrypt = require('bcrypt');
 module.exports = async (req, res) => {
 
     try {
-        const User = dataBase.getModel('user');
+        const User = dataBase.getModel('User');
 
         const {name, password} = req.body;
 
         if (!name || !password) throw new Error('Some fields are empty');
 
         const isPresent = await User.findOne({
-            where: {
+            where:{
                 name
             }
         });
@@ -25,11 +25,12 @@ module.exports = async (req, res) => {
                     console.log(err);
                     return reject(err);
                 }
-                if (result) return resolve(true);
+                return resolve(result);
             });
         });
 
-        const {id, name: Name} = isPresent.dataValues;
+
+        const {id, name: Name} = isPresent;
         const accessToken = tokinazer(id, Name);
 
         if (!correctPassword) {

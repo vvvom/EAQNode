@@ -5,10 +5,10 @@ const foodRouter = require('./foodRouter');
 const drinkRouter = require('./drinkRouter');
 const menuRouter = require('./menuRouter');
 const paymentRouter = require('./paymentRouter');
-const refJornalRouter = require('./refJournalRouter');
+const refJournalRouter = require('./refJournalRouter');
 const typeFoodRouter = require('./typeFoodRouter');
 const typeDrinkRouter = require('./typeDrinkRouter');
-const useRouter = require('./userRouter');
+const userRouter = require('./userRouter');
 
 apiRouter.use('/cafes', cafeRouter);
 apiRouter.use('/orders', orderRouter);
@@ -16,9 +16,9 @@ apiRouter.use('/foods', foodRouter);
 apiRouter.use('/drinks', drinkRouter);
 apiRouter.use('/menus', menuRouter);
 apiRouter.use('/payments', paymentRouter);
-apiRouter.use('/journals', refJornalRouter);
-apiRouter.use('/type/foods', typeFoodRouter);
-apiRouter.use('/type/drinks', typeDrinkRouter);
-apiRouter.use('/user', useRouter);
+apiRouter.use('/journals', refJournalRouter);
+apiRouter.use('/types/foods', typeFoodRouter);
+apiRouter.use('/types/drinks', typeDrinkRouter);
+apiRouter.use('/users', userRouter);
 
 module.exports = apiRouter;

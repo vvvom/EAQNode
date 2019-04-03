@@ -2,18 +2,15 @@ let dataBase = require('../../dataBase').getInstance();
 
 module.exports = async (req, res) => {
     try {
-        const Drink_type = dataBase.getModel('Type_drink');
-        const Menu = dataBase.getModel('Menu');
+        const Payments = dataBase.getModel('Payments_type');
 
-        const gotDrinkType = await Drink_type.findAll({
-            include: [Menu]
-        });
+        const gotPayments = await Payments.findAll({});
 
-        if (!gotDrinkType) throw new Error('Drink type not exist');
+        if (!gotPayments) throw new Error('Peyments not exist');
 
         res.json({
             success: true,
-            message: gotDrinkType
+            message: gotPayments
         });
     } catch (e) {
         console.log(e);

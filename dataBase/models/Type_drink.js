@@ -8,6 +8,9 @@ module.exports = (sequelize, DataTypes) => {
             },
             type: {
                 type: DataTypes.STRING
+            },
+            menu_id: {
+                type: DataTypes.INTEGER
             }
         },
         {
@@ -15,5 +18,10 @@ module.exports = (sequelize, DataTypes) => {
             timestamps: false
         }
     );
+
+    const Menu_id = sequelize.import('./Menu.js');
+    Type_drink.belongsTo(Menu_id, {foreignKey: 'menu_id'});
+
+
     return Type_drink;
 };

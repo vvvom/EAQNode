@@ -12,6 +12,7 @@ module.exports = (token, secret) => {
         user = {
             id: decoded.id,
             name: decoded.name,
+            credentials: decoded.credentials,
         }
     });
 

@@ -1,10 +1,10 @@
-let router = require('express').Router();
+const router = require('express').Router();
 
 const GetAllOrders  = require('../controllers/order/gotAllOrders');
 const AddOrder  = require('../controllers/order/addOrder');
 const DeleteOrder  = require('../controllers/order/deleteOrder');
 const FindOrderById  = require('../controllers/order/fidnOrderById');
-const UpdateCafe  = require('../controllers/cafe/updateCafe');
+const UpdateCafe  = require('../controllers/cafe/updateCafeName');
 
 
 router.get('/', GetAllOrders);

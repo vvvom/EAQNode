@@ -7,13 +7,13 @@ module.exports = async (req, res) => {
         const Payments_Type = dataBase.getModel('Payments_type');
         const Cafe = dataBase.getModel('Cafe');
 
-        const id = req.params.id;
+        const name = req.params.name;
 
-        if (!id) throw new Error('No id');
+        if (!name) throw new Error('No name');
 
         const gotOrder = await Order.findOne({
             where: {
-                id
+                name
             },
             include: [Payments_Type, Cafe]
         });

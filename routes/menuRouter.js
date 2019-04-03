@@ -1,4 +1,4 @@
-let router = require('express').Router();
+const router = require('express').Router();
 
 const GetAllMenu  = require('../controllers/menu/gotAllMenu');
 const AddMenu  = require('../controllers/menu/addMenu');

@@ -1,4 +1,6 @@
 let dataBase = require('../../dataBase').getInstance();
+const tokenVerificator = require('../../helpers/tokenVerificator');
+let secret = require('../../config/secret');
 
 module.exports = async (req, res) => {
     try {
@@ -13,6 +15,20 @@ module.exports = async (req, res) => {
 
         if (!cafe_id || !name)
             throw new Error('Some fields are empty');
+
+        const token = req.get('Authoruzation');
+        if (!token) throw new Error('No token');
+
+        const {id: idLoggedCage} = tokenVerificator(token, secret);
+
+        if (cafe_id !== idLoggedCage) throw new Error('It s no your menu');
+
+        const isExist = Menu.findOne({
+            where: {
+                name
+            }
+        });
+        if (isExist) throw new Error('Drink already exist');
 
         await Menu.create({
             cafe_id,

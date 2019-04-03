@@ -1,20 +1,33 @@
-let dataBase = require('../../dataBase').getInstance();
+const dataBase = require('../../dataBase').getInstance();
+const tokenVerificator = require('../../helpers/tokenVerificator');
+const secret = require('../../config/secret');
 
 module.exports = async (req, res) => {
     try {
         const Drink = dataBase.getModel('Drink');
 
-        const id = req.params.id;
+        const name = req.params.name;
+        if (!name) throw new Error('No name');
 
-        if (!id) throw new Error('No id');
+        const token = req.get('Authorization');
+        if (!token) throw new Error('No token');
+
+        const {id: idFromToken} = tokenVerificator(token, secret);
+        //check drink name and cafe_id this Drink to cafe Id logged cafe
+        const isExist = await Drink.findOne({
+            where: {
+                name,
+                cafe_id: idFromToken
+            }
+        });
+        if (!isExist) throw new Error('No drink with this name');
 
         await Drink.destroy({
             where: {
-                id
+                name,
+                cafe_id: idFromToken
             },
-
         });
-
         res.json({
             success: true,
             message: 'Drink successfully deleted'

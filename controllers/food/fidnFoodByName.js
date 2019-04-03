@@ -1,4 +1,6 @@
-let dataBase = require('../../dataBase').getInstance();
+const dataBase = require('../../dataBase').getInstance();
+const secret = require('../../config/secret');
+const tokenVerificator = require('../../helpers/tokenVerificator');
 
 module.exports = async (req, res) => {
 
@@ -7,19 +9,22 @@ module.exports = async (req, res) => {
         const Type_Food = dataBase.getModel('Type_food');
         const Menu = dataBase.getModel('Menu');
 
+        const name = req.params.name;
+        if (!name) throw new Error('No name');
 
-        const id = req.params.id;
+        const token = req.get('Authorization');
+        if (!token) throw new Error('No token');
 
-        if (!id) throw new Error('No id');
+        const {id: idFromToken} = tokenVerificator(token,secret);
 
         const gotFood = await Food.findOne({
             where: {
-                id
+                name,
+                cafe_id: idFromToken
             },
             include: [Type_Food, Menu]
         });
-
-        if (!gotFood) throw new Error('Food with this id does not exist');
+        if (!gotFood) throw new Error('Food with this name does not exist');
 
         res.json({
             success: true,

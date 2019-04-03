@@ -26,8 +26,10 @@ module.exports = (sequelize, DataTypes) => {
             },
             about: {
                 type: DataTypes.STRING
+            },
+            cafe_id: {
+                type: DataTypes.INTEGER
             }
-
         },
         {
             tableName: 'food',
@@ -39,6 +41,9 @@ module.exports = (sequelize, DataTypes) => {
 
     const Menu_id = sequelize.import('./Menu.js');
     Food.belongsTo(Menu_id, {foreignKey: 'menu_id'});
+
+    const Cafe_id = sequelize.import('./Cafe.js');
+    Food.belongsTo(Cafe_id, {foreignKey: 'cafe_id'});
 
     return Food;
 };
