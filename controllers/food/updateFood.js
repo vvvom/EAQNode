@@ -44,14 +44,16 @@ module.exports = async (req, res) => {
                 cafe_id: idFromToken
             }
         });
+        if(!checkMenu) throw new Error('No menu with this name')
+
         const {id: menuId} = checkMenu;
 
         const checkTypeFood = await Type_food.findOne({
             where:{
-                type: typeFood,
-                menu_id: menuId
+                type: typeFood
             }
         });
+        if(!checkTypeFood) throw new Error("No type with this name");
 
         const {id: typeFoodId} = checkTypeFood;
 
@@ -63,8 +65,6 @@ module.exports = async (req, res) => {
         });
         if (!isExist) throw new Error('No food with this name');
 
-        const {cafe_id: cafeId} = isExist;
-
         await Food.update({
             name,
             ingredients,
@@ -73,13 +73,13 @@ module.exports = async (req, res) => {
             price,
             weight,
             about,
-            cafe_id: cafeId,
+            cafe_id: idFromToken,
         }, {
             where: {
+                name: nameFromParams,
                 cafe_id: idFromToken
             }
         });
-
         res.json({
             success: true,
             message: 'Food successfully updated'
