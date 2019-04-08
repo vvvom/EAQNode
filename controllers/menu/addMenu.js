@@ -1,40 +1,33 @@
-let dataBase = require('../../dataBase').getInstance();
+const dataBase = require('../../dataBase').getInstance();
 const tokenVerificator = require('../../helpers/tokenVerificator');
-let secret = require('../../config/secret');
+const secret = require('../../config/secret');
 
 module.exports = async (req, res) => {
     try {
         const Menu = dataBase.getModel('Menu');
-        const Cafe = dataBase.getModel('Cafe');
 
         const menuInfo = req.body;
-
         if (!menuInfo) throw new Error('Body is empty');
 
         const {cafe_id, name} = menuInfo;
+        if (!cafe_id || !name) throw new Error('Some fields are empty');
 
-        if (!cafe_id || !name)
-            throw new Error('Some fields are empty');
-
-        const token = req.get('Authoruzation');
+        const token = req.get('Authorization');
         if (!token) throw new Error('No token');
 
-        const {id: idLoggedCage} = tokenVerificator(token, secret);
-
-        if (cafe_id !== idLoggedCage) throw new Error('It s no your menu');
+        const {id: idFromToken} = tokenVerificator(token, secret);
 
         const isExist = Menu.findOne({
             where: {
-                name
+                name,
+                cafe_id: idFromToken
             }
         });
-        if (isExist) throw new Error('Drink already exist');
+        if (!isExist) throw new Error('Menu already exist');
 
         await Menu.create({
-            cafe_id,
+            cafe_id: idFromToken,
             name,
-
-            include: [Cafe]
         });
 
         res.json({

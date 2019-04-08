@@ -30,17 +30,12 @@ module.exports = async (req, res) => {
         const {id, name: Name} = isPresent;
 
         const accessToken = tokinazer(id, Name);
-        if (!correctPassword) {
-            res.json({
-                success: false,
-                message: 'Wrong password'
-            });
-        } else if (correctPassword) {
-            res.json({
-                success: true,
-                message: accessToken
-            });
-        }
+        if (!correctPassword) throw new Error("Invalid password")
+
+        res.json({
+            success: true,
+            message: accessToken
+        });
 
     } catch (e) {
         console.log(e);

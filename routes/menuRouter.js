@@ -3,7 +3,7 @@ const router = require('express').Router();
 const GetAllMenu  = require('../controllers/menu/gotAllMenu');
 const AddMenu  = require('../controllers/menu/addMenu');
 const DeleteMenu  = require('../controllers/menu/deleteMenu');
-const FindMenuById  = require('../controllers/menu/findMenuyName');
+const FindMenuById  = require('../controllers/menu/findMenuyByName');
 const UpdateMenu  = require('../controllers/menu/updateMenu');
 
 
