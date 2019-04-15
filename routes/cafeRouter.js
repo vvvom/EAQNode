@@ -10,11 +10,11 @@ const LoginationCafe  = require('../controllers/cafe/loginationCafe');
 
 
 router.get('/', GetAllCafes);
-router.post('/registers', RegisterCafe);
+router.post('/register', RegisterCafe);
 router.delete('/:name', DeleteCafe);
 router.get('/:name', FindCafeById);
 router.put('/updateCafeName/:name', UpdateCafeName);
 router.put('/updateCafePassword/:name', UpdateCafePassword);
-router.post('/logins', LoginationCafe);
+router.post('/login', LoginationCafe);
 
 module.exports = router;
