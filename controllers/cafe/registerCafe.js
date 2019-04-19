@@ -1,9 +1,8 @@
 const dataBase = require('../../dataBase').getInstance();
-let bcrypt = require('bcrypt');
-let tokenVerificator = require('../../helpers/tokenVerificator');
-let secret = require('../../config/secret');
-let userRoles = require('../../config/userRoles');
-
+const bcrypt = require('bcrypt');
+const tokenVerificator = require('../../helpers/tokenVerificator');
+const secret = require('../../config/secret');
+const userRoles = require('../../config/userRoles');
 
 module.exports = async (req, res) => {
     try {

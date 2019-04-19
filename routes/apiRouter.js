@@ -9,6 +9,7 @@ const refJournalRouter = require('./refJournalRouter');
 const typeFoodRouter = require('./typeFoodRouter');
 const typeDrinkRouter = require('./typeDrinkRouter');
 const userRouter = require('./userRouter');
+// const arrayHashTable = require('./arrayHashTable')
 
 apiRouter.use('/cafes', cafeRouter);
 apiRouter.use('/orders', orderRouter);
@@ -20,5 +21,6 @@ apiRouter.use('/journals', refJournalRouter);
 apiRouter.use('/types/foods', typeFoodRouter);
 apiRouter.use('/types/drinks', typeDrinkRouter);
 apiRouter.use('/users', userRouter);
+// apiRouter.use('/', arrayHashTable);
 
 module.exports = apiRouter;

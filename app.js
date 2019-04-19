@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+// const bcrypt = require('bcrypt');
 
 const dataBase = require('./dataBase').getInstance();
 dataBase.setModels();
@@ -19,6 +20,17 @@ app.use(function (req, res, next) {
 });
 
 app.use('/api', apiRouter);
+
+let arr = require('./config/arrayHashTable');
+let qwe = '$2b$10$KOKT0oeYEjlmHCZdl50oIOpBRzy0V8EFUco36zQ52ZTEJt9nAILei';
+
+let filter =  arr.filter((item) => {
+    if (qwe === item.hash) {
+        return item;
+    }
+});
+
+console.log(filter[0].table);
 
 app.listen(3000, err => {
     if (err) console.log(err);
