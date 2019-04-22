@@ -5,7 +5,7 @@ const secret = require('../../config/secret');
 module.exports = async (req, res) => {
     try {
         const Drink_type = dataBase.getModel('Type_drink');
-        const Menu = dataBase.getModel('Menu')
+        const Menu = dataBase.getModel('Menu');
 
         const type = req.params.type;
         if (!type) throw new Error('No type');

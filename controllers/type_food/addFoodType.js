@@ -36,9 +36,7 @@ module.exports = async (req, res) => {
 
         await Food_type.create({
             type,
-            where: {
-                menu_id: menuId
-            }
+            menu_id: menuId
         });
 
         res.json({
