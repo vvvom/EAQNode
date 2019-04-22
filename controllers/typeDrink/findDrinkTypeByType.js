@@ -1,26 +1,41 @@
-
-let dataBase = require('../../dataBase').getInstance();
+const dataBase = require('../../dataBase').getInstance();
+const tokenVerificator = require('../../helpers/tokenVerificator');
+const secret = require('../../config/secret');
 
 module.exports = async (req, res) => {
 
     try {
         const TypeDrink = dataBase.getModel('TypeDrink');
+        const Menu = dataBase.getModel('Menu');
 
         const type = req.params.type;
-
         if (!type) throw new Error('No type');
 
-        const typed = await TypeDrink.findOne({
-            where: {
-                type
-            },
+        const token = req.get('Authorization');
+        if (!token) throw new Error('No token');
+
+        const {id: idFromToken} = tokenVerificator(token,secret);
+
+        const findMenu = await Menu.findOne({
+            where:{
+                cafe_id: idFromToken
+            }
         });
 
-        if (!typed) throw new Error('Type with this id does not exist');
+        const {id: menuId} = findMenu;
+
+        const isExist = await TypeDrink.findOne({
+            where:{
+                type,
+                menu_id:menuId
+            }
+        });
+        if (!isExist)throw new Error('type with this name does not exist');
+
 
         res.json({
             success: true,
-            message: typed
+            message: isExist
         });
     } catch (e) {
         console.log(e);
